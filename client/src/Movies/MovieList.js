@@ -13,7 +13,7 @@ export default function MovieList(props) {
 
 function MovieDetails(props) {
   const { title, director, metascore, id } = props.movie;
-  const {url} = useRouteMatch();
+  const { url } = useRouteMatch();
  
   return (
     <Link to={`/movies/${id}`}>

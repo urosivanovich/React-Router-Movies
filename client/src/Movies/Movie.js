@@ -3,20 +3,25 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom'
 
 export default function Movie(props) {
-  const [movie, setMovie] = useState();
-
+  const [movie, setMovie] = useState({title: '', director: '', metascore: '', stars: []});
+  
+ 
+  
   const { id }   = useParams();
-  console.log(id)
+  console.log(useParams())
+
+  
   // Change ^^^ that line and use a hook to obtain the :id parameter from the URL
 
   useEffect(() => {
     axios
       .get(`http://localhost:5001/api/movies/${id}`) // Study this endpoint with Postman
       .then(response => {
-        console.log(response)
+        
         // Study this response with a breakpoint or log statements
         // and set the response data as the 'movie' slice of state
         setMovie(response.data);
+        console.log(response.data)
       })
       .catch(error => {
         console.error(error);
@@ -46,8 +51,8 @@ export default function Movie(props) {
         </div>
         <h3>Actors</h3>
 
-        {stars.map(star => (
-          <div key={star} className="movie-star">
+          {stars.map(star => (
+           <div key={star} className="movie-star">
             {star}
           </div>
         ))}
